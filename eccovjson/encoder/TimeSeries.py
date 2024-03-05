@@ -121,7 +121,7 @@ class TimeSeries(Encoder):
         mars_metadata["levtype"] = df["levtype"].unique()[0]
         mars_metadata["type"] = df["type"].unique()[0]
         mars_metadata["date"] = df["date"].unique()[0]
-        mars_metadata["domain"] = df["domain"].unique()[0]
+        # mars_metadata["domain"] = df["domain"].unique()[0]
         mars_metadata["stream"] = df["stream"].unique()[0]
 
         coords = {}
