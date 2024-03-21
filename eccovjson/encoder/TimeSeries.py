@@ -136,7 +136,7 @@ class TimeSeries(Encoder):
         start_time = datetime.strptime(date, date_format)
         for step in steps:
             # add current date to list by converting it to iso format
-            stamp = start_time + timedelta(hours=int(step))
+            stamp = start_time + timedelta(minutes=int(step))
             coords["t"].append(stamp.isoformat())
             # increment start date by timedelta
 
