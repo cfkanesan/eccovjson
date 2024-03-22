@@ -25,17 +25,17 @@ class Encoder(ABC):
 
     def add_parameter(self, param):
         param = self.convert_param_id_to_param(param)
-        if param == "t" or param == "167":
+        if param == "T_2M" or param == "500011":
             self.covjson["parameters"][param] = {
                 "type": "Parameter",
-                "description": "Temperature",
+                "description": "2m Temperature",
                 "unit": {"symbol": "K"},
                 "observedProperty": {
-                    "id": "t",
-                    "label": {"en": "Temperature"},
+                    "id": "T_2M",
+                    "label": {"en": "2m Temperature"},
                 },
             }
-        elif param == "tp" or param == "228":
+        elif param == "TOT_PREC" or param == "500041":
             self.covjson["parameters"][param] = {
                 "type": "Parameter",
                 "description": "Total Precipitation",
@@ -45,53 +45,43 @@ class Encoder(ABC):
                     "label": {"en": "Total Precipitation"},
                 },
             }
-        elif param == "10u" or param == "165":
+        elif param == "U_10M" or param == "500027":
             self.covjson["parameters"][param] = {
                 "type": "Parameter",
                 "description": "10 metre U wind component",
                 "unit": {"symbol": "ms-1"},
                 "observedProperty": {
-                    "id": "10u",
+                    "id": "U_10M",
                     "label": {"en": "10 metre U wind component"},
                 },
             }
-        elif param == "10v" or param == "166":
+        elif param == "V_10M" or param == "500029":
             self.covjson["parameters"][param] = {
                 "type": "Parameter",
                 "description": "10 metre V wind component",
                 "unit": {"symbol": "ms-1"},
                 "observedProperty": {
-                    "id": "10v",
+                    "id": "V_10M",
                     "label": {"en": "10 metre V wind component"},
                 },
             }
-        elif param == "10fg" or param == "49":
-            self.covjson["parameters"][param] = {
-                "type": "Parameter",
-                "description": "Maximum 10 metre wind gust since previous post-processing",
-                "unit": {"symbol": "ms-1"},
-                "observedProperty": {
-                    "id": "10fg",
-                    "label": {"en": "Maximum 10 metre wind gust since previous post-processing"},
-                },
-            }
-        elif param == "tcc" or param == "164":
+        elif param == "CLCT" or param == "500046":
             self.covjson["parameters"][param] = {
                 "type": "Parameter",
                 "description": "Total cloud cover",
                 "unit": {"symbol": ""},
                 "observedProperty": {
-                    "id": "tcc",
+                    "id": "CLCT",
                     "label": {"en": "Total cloud cover"},
                 },
             }
-        elif param == "2d" or param == "168":
+        elif param == "TD_2M" or param == "500017":
             self.covjson["parameters"][param] = {
                 "type": "Parameter",
                 "description": "2 metre dewpoint temperature",
                 "unit": {"symbol": "K"},
                 "observedProperty": {
-                    "id": "2d",
+                    "id": "TD_2M",
                     "label": {"en": "2 metre dewpoint temperature"},
                 },
             }
@@ -105,20 +95,18 @@ class Encoder(ABC):
             param = int(paramid)
         except BaseException:
             return paramid
-        if param == 165:
-            return "10u"
-        elif param == 166:
-            return "10v"
-        elif param == 167:
-            return "t"
-        elif param == 228:
-            return "tp"
-        elif param == 49:
-            return "10fg"
-        elif param == 164:
-            return "tcc"
-        elif param == 168:
-            return "2d"
+        if param == 500027:
+            return "U_10M"
+        elif param == 500029:
+            return "V_10M"
+        elif param == 500011:
+            return "T_2M"
+        elif param == 500041:
+            return "TOT_PREC"
+        elif param == 500046:
+            return "CLCT"
+        elif param == 500017:
+            return "TD_2M"
 
     @abstractmethod
     def add_coverage(self, mars_metadata, coords, values):
